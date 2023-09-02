@@ -1,32 +1,11 @@
 import chalk from "chalk";
 
-interface RepsSetsWeight {
-  reps: number;
-  sets: number;
-  weight: number;
-}
-
-interface RepsSetsWeightWithProgression {
-  calculateProgression(week: number, progression?: Progression): RepsSetsWeight;
-}
-
-interface WorkoutComponentData {
-  type: string;
-  excercises: {
-    name: string;
-    sets: number;
-    reps: number;
-    weight: number;
-  }[];
-}
-
-interface WorkoutData {
-  components: WorkoutComponentData[];
-}
-
-interface WeeklyWorkoutData {
-  workouts: WorkoutData[];
-}
+import {
+  RepsSetsWeight,
+  RepsSetsWeightWithProgression,
+  WorkoutData,
+  WeeklyWorkoutData,
+} from "./types";
 
 export class Exercise implements RepsSetsWeightWithProgression {
   name: string;
@@ -34,19 +13,22 @@ export class Exercise implements RepsSetsWeightWithProgression {
   reps: number;
   weight: number;
   rest?: number;
+  type?: string;
 
   constructor(
     name: string,
     sets: number,
     reps: number,
     weight: number,
-    rest?: number
+    rest?: number,
+    type?: string
   ) {
     this.name = name;
     this.sets = sets;
     this.reps = reps;
     this.weight = weight;
-    this.rest = rest;
+    this.rest = rest || 60;
+    this.type = type || "accessory";
   }
 
   editExercise(opts: Partial<Exercise>): void {
@@ -57,7 +39,7 @@ export class Exercise implements RepsSetsWeightWithProgression {
     week: number,
     progression?: Progression
   ): RepsSetsWeight {
-    if (!progression) {
+    if (!progression || this.type !== "compound") {
       return {
         reps: this.reps,
         sets: this.sets,
@@ -120,7 +102,7 @@ export class Workout {
 
   constructor(
     public name: string,
-    public progression: Progression = new Progression("linear", 5),
+    public progression: Progression = new Progression("linear", 2.5),
     public restBetweenSets: number = 60
   ) {}
 
@@ -148,7 +130,7 @@ export class Workout {
     );
   }
 
-  generateWorkout(week: number = 1): WorkoutData {
+  generateWorkout(week: number): WorkoutData {
     console.log("Workout: ", this.name);
     console.log("Week: ", week);
 
@@ -179,7 +161,6 @@ export class Workout {
 export class WorkoutProgram {
   constructor(
     public progression: Progression,
-    public days: number = 3,
     public name: string = "TEST PROGRAM",
     public workouts: Workout[] = []
   ) {}
@@ -217,15 +198,5 @@ export class WorkoutProgram {
     console.log(chalk.black.bgCyan("  Weekly Workouts  "));
     console.dir(workoutProgram, { depth: 20 });
     return workoutProgram;
-  }
-
-  calculateProgression(currentWeight: number, currentReps: number): void {
-    if (this.progression.type === "linear") {
-      // Implement linear progression logic here
-      // Example: Add 'this.progression.increment' to the weight each week
-    } else if (this.progression.type === "rep") {
-      // Implement rep progression logic here
-      // Example: Increase reps by 'this.progression.increment' while keeping weight constant
-    }
   }
 }
