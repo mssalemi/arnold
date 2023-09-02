@@ -1,3 +1,5 @@
+import chalk from "chalk";
+
 interface RepsSetsWeight {
   reps: number;
   sets: number;
@@ -6,6 +8,24 @@ interface RepsSetsWeight {
 
 interface RepsSetsWeightWithProgression {
   calculateProgression(week: number, progression?: Progression): RepsSetsWeight;
+}
+
+interface WorkoutComponentData {
+  type: string;
+  excercises: {
+    name: string;
+    sets: number;
+    reps: number;
+    weight: number;
+  }[];
+}
+
+interface WorkoutData {
+  components: WorkoutComponentData[];
+}
+
+interface WeeklyWorkoutData {
+  workouts: WorkoutData[];
 }
 
 export class Exercise implements RepsSetsWeightWithProgression {
@@ -127,9 +147,34 @@ export class Workout {
       this.workoutComponents.splice(oldIndex, 1)[0]
     );
   }
-}
 
-import chalk from "chalk";
+  generateWorkout(week: number = 1): WorkoutData {
+    console.log("Workout: ", this.name);
+    console.log("Week: ", week);
+
+    const workout = this.workoutComponents.map((component) => {
+      const type = component.excercises.length > 1 ? "Superset" : "Single Set";
+
+      return {
+        type,
+        excercises: component.excercises.map((excercise) => {
+          const { sets, reps, weight } = excercise.calculateProgression(
+            week,
+            this.progression
+          );
+          return {
+            name: excercise.name,
+            sets: sets,
+            reps: reps,
+            weight: weight,
+          };
+        }),
+      };
+    });
+
+    return { components: workout };
+  }
+}
 
 export class WorkoutProgram {
   constructor(
@@ -153,57 +198,25 @@ export class WorkoutProgram {
   }
 
   // TODO: Numerical/Alphabetical ordering
-  generateWorkoutProgram(weeks: number = 2): {
-    name: string;
-    components: {
-      type: string;
-      excercises: {
-        name: string;
-        sets: number;
-        reps: number;
-        weight: number;
-      }[];
-    }[];
-  }[] {
+  generateWorkoutProgram(weeks: number = 2): WeeklyWorkoutData[] {
     console.log("Workout Program: ", this.name);
     console.log("Total Weeks:", weeks);
 
     console.log("Workouts per Week: ", this.workouts.length);
 
-    const data = this.workouts.map((workout, index) => {
-      return {
-        name: workout.name,
-        components: workout.workoutComponents.map((component) => {
-          console.log(
-            "component: ",
-            index,
-            " -> ",
-            component.excercises.length > 1 ? "Superset" : "Single Set"
-          );
-          // Right now we are mapping over workoutComponents in a workout
-          // For each workout components, we should return the:
-          // type = Excercise or SuperSet
-          return {
-            type: component.excercises.length > 1 ? "Superset" : "Single Set",
-            excercises: component.excercises.map((excercise) => {
-              const { sets, reps, weight } = excercise.calculateProgression(
-                index,
-                this.progression
-              );
-              return {
-                name: excercise.name,
-                sets: sets,
-                reps: reps,
-                weight: weight,
-              };
-            }),
-          };
-        }),
-      };
-    });
+    const workoutProgram: WeeklyWorkoutData[] = [];
+
+    for (let i = 0; i < weeks; i++) {
+      const week = i;
+      const workouts = this.workouts.map((workout, index) => {
+        return workout.generateWorkout(index + week);
+      });
+      workoutProgram[i] = { workouts };
+    }
+
     console.log(chalk.black.bgCyan("  Weekly Workouts  "));
-    console.dir(data, { depth: 20 });
-    return data;
+    console.dir(workoutProgram, { depth: 20 });
+    return workoutProgram;
   }
 
   calculateProgression(currentWeight: number, currentReps: number): void {
