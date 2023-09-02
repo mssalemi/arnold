@@ -1,38 +1,48 @@
-WorkoutProgram
+# WorkoutProgram
 
-- schedule
-  - date or 1 off 1 on
--
+#### Setup Instructions
 
-- add workouts
-- remove workouts
--
+This setup uses node.js to easily run and test out TS code.
 
-## Setup
-
-use node.js instead
+To Compile Individual Files:
 
 ```
 tsc filename
 ```
 
-Spits out a .js file for the .ts file.
+- This will generate a `.js` for each `.ts` file
 
 For Compiling Code:
-There should be a src and build directory
 
-Create ts-config
+- Create `src` and `build` directory
+
+Create ts-config:
 
 ```
 tsc --init
 ```
 
-Set the rootDir and outDir.
+- Set the `rootDir` and `outDir`.
 
-Then tsc -w
+Then to use the `tsc` - typescript compiler in `watch` mode, use the command with the flag:
+
+```
+tsc - w
+```
 
 Now we can compile the JS code with:
 
 ```
 node build/index.js
 ```
+
+To make things easy, we can add the following script to our package.json:
+
+````
+    "start:build": "tsc -w",
+    "start:run": "nodemon build/index.js",
+    "start": "concurrently npm:start:*",
+    ```
+````
+
+Will build `TS` code and then watch for code for changes with nodemon.
