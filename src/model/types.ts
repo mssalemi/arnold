@@ -1,4 +1,4 @@
-import { Progression } from "./workout_v2";
+import { Progression } from "./Progression";
 
 export interface RepsSetsWeight {
   reps: number;

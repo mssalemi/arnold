@@ -1,10 +1,10 @@
 import {
+  Progression,
   Exercise,
   WorkoutComponent,
-  Progression,
   Workout,
   WorkoutProgram,
-} from "./model/workout_v2";
+} from "./model";
 
 console.log("[WorkoutProgram] booting...");
 
