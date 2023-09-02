@@ -4,7 +4,7 @@ import {
   Progression,
   Workout,
   WorkoutProgram,
-} from "./workout_v2";
+} from "./model/workout_v2";
 
 console.log("[WorkoutProgram] booting...");
 

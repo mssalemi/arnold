@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const workout_v2_1 = require("./workout_v2");
+const workout_v2_1 = require("./model/workout_v2");
 console.log("[WorkoutProgram] booting...");
 // Example usage:
 const bencPress = new workout_v2_1.Exercise("Bench Press", 3, 10, 185);
