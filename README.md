@@ -1,4 +1,7 @@
-# WorkoutProgram
+# WorkoutProgramCalulator
+
+- Working in progress.....
+- Goal is to create `TS` model to create and build out a custom workout program with progression.
 
 #### Setup Instructions
 
@@ -45,5 +48,3 @@ To make things easy, we can add the following script to our package.json:
 ```
 
 Will build `TS` code and then watch for code for changes with nodemon.
-
-Test
