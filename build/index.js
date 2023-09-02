@@ -1,0 +1,24 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const workout_v2_1 = require("./workout_v2");
+console.log("[WorkoutProgram] booting...");
+// Example usage:
+const bencPress = new workout_v2_1.Exercise("Bench Press", 3, 10, 185);
+const chestFly = new workout_v2_1.Exercise("DB Fly", 3, 12, 20);
+const pushUp = new workout_v2_1.Exercise("Push Ups", 3, 15, 0);
+const triExt = new workout_v2_1.Exercise("Tricep Extension", 3, 10, 20);
+const benchPressComponent = new workout_v2_1.WorkoutComponent();
+benchPressComponent.addExercise(bencPress);
+const chestFlyComponent = new workout_v2_1.WorkoutComponent([chestFly]);
+const supersetChestTricep = new workout_v2_1.WorkoutComponent([pushUp, triExt]);
+const linearProgression = new workout_v2_1.Progression("linear", 5);
+const workout = new workout_v2_1.Workout("Workout 1", linearProgression, 60);
+workout.addWorkoutComponent(benchPressComponent);
+workout.addWorkoutComponent(chestFlyComponent);
+workout.addWorkoutComponent(supersetChestTricep);
+// console.log("[Add workout components to workouts] ....");
+// console.log(workout);
+const program = new workout_v2_1.WorkoutProgram(linearProgression);
+program.addWorkout(workout);
+// console.log(program);
+program.generateWorkoutProgram();
