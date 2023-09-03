@@ -1,22 +1,22 @@
 import { Exercise } from "./Exercise";
 
 export class WorkoutComponent {
-  excercises: Exercise[];
+  exercises: Exercise[];
 
-  constructor(excercises: Exercise[] = []) {
-    this.excercises = excercises;
+  constructor(exercises: Exercise[] = []) {
+    this.exercises = exercises;
   }
 
   addExercise(exercise: Exercise): void {
-    this.excercises.push(exercise);
+    this.exercises.push(exercise);
   }
 
   removeExercise(exercise: Exercise): void {
-    this.excercises = this.excercises.filter((e) => e.name !== exercise.name);
+    this.exercises = this.exercises.filter((e) => e.name !== exercise.name);
   }
 
   reorderExercise(exercise: Exercise, newIndex: number): void {
-    const oldIndex = this.excercises.findIndex((e) => e.name === exercise.name);
-    this.excercises.splice(newIndex, 0, this.excercises.splice(oldIndex, 1)[0]);
+    const oldIndex = this.exercises.findIndex((e) => e.name === exercise.name);
+    this.exercises.splice(newIndex, 0, this.exercises.splice(oldIndex, 1)[0]);
   }
 }

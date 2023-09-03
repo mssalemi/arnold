@@ -12,7 +12,7 @@ export interface RepsSetsWeightWithProgression {
 
 interface WorkoutComponentData {
   type: string;
-  excercises: {
+  exercises: {
     name: string;
     sets: number;
     reps: number;

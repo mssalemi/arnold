@@ -40,11 +40,11 @@ export class Workout {
     console.log("Week: ", week);
 
     const workout = this.workoutComponents.map((component) => {
-      const type = component.excercises.length > 1 ? "Superset" : "Single Set";
+      const type = component.exercises.length > 1 ? "Superset" : "Single Set";
 
       return {
         type,
-        excercises: component.excercises.map((excercise) => {
+        exercises: component.exercises.map((excercise) => {
           const { sets, reps, weight } = excercise.calculateProgression(
             week,
             this.progression
