@@ -49,6 +49,7 @@ export class Workout {
             week,
             this.progression
           );
+          console.log("week: ", week);
           return {
             name: excercise.name,
             sets: sets,
