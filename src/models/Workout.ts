@@ -1,4 +1,4 @@
-import { Progression, WorkoutComponent } from "./";
+import { Progression, WorkoutComponent } from ".";
 
 import { WorkoutData } from "./types";
 

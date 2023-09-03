@@ -4,7 +4,7 @@ import {
   WorkoutComponent,
   Workout,
   WorkoutProgram,
-} from "./model";
+} from "./models";
 
 console.log("[WorkoutProgram] booting...");
 

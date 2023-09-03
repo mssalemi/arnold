@@ -1,4 +1,4 @@
-import { RepsSetsWeightWithProgression, RepsSetsWeight, Progression } from "./";
+import { RepsSetsWeightWithProgression, RepsSetsWeight, Progression } from ".";
 
 export class Exercise implements RepsSetsWeightWithProgression {
   name: string;
@@ -45,12 +45,6 @@ export class Exercise implements RepsSetsWeightWithProgression {
         reps: this.reps,
         sets: this.sets,
         weight: this.weight + progression.increment * week,
-      };
-    } else if (progression.type == "rep") {
-      return {
-        reps: this.reps + progression.increment * week,
-        sets: this.sets,
-        weight: this.weight,
       };
     } else {
       throw new Error("Invalid progression type");

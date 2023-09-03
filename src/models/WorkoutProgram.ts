@@ -1,6 +1,6 @@
 import chalk from "chalk";
 
-import { Progression, Workout, WeeklyWorkoutData } from "./";
+import { Progression, Workout, WeeklyWorkoutData } from ".";
 
 export class WorkoutProgram {
   constructor(
