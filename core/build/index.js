@@ -3,7 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("./models");
 console.log("[WorkoutProgram] booting...");
 // Example usage:
-const bencPress = new models_1.Exercise("Bench Press", 3, 10, 185, undefined, "compound");
+const bencPress = new models_1.Exercise(
+  "Bench Press",
+  3,
+  10,
+  185,
+  undefined,
+  "compound"
+);
 const chestFly = new models_1.Exercise("DB Fly", 3, 12, 20);
 const pushUp = new models_1.Exercise("Push Ups", 3, 15, 0);
 const triExt = new models_1.Exercise("Tricep Extension", 3, 10, 20);

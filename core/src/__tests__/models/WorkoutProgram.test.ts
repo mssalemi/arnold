@@ -113,7 +113,6 @@ describe("WorkoutProgram", () => {
       workoutProgramData[0].workouts[0].components[0].exercises[0].weight
     ).toBe(70);
 
-    console.log("Workout Program Data: ", workoutProgramData[8]);
     expect(
       workoutProgramData[8].workouts[0].components[0].exercises[0].name
     ).toBe("Bench Press");

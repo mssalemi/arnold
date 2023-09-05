@@ -24,11 +24,6 @@ export class WorkoutProgram {
 
   // TODO: Numerical/Alphabetical ordering
   generateWorkoutProgram(weeks: number = 2): WeeklyWorkoutData[] {
-    console.log("Workout Program: ", this.name);
-    console.log("Total Weeks:", weeks);
-
-    console.log("Workouts per Week: ", this.workouts.length);
-
     const workoutProgram: WeeklyWorkoutData[] = [];
 
     for (let i = 0; i < weeks; i++) {
@@ -38,9 +33,7 @@ export class WorkoutProgram {
       });
       workoutProgram[i] = { workouts };
     }
-
-    console.log(chalk.black.bgCyan("  Weekly Workouts  "));
-    console.dir(workoutProgram, { depth: 20 });
+    // console.dir(workoutProgram, { depth: 20 });
     return workoutProgram;
   }
 }
