@@ -1,7 +1,7 @@
 import { Workout, Exercise, WorkoutComponent } from "../../models";
 
 describe("Workout", () => {
-  const benchPress = new Exercise("Bench Press", 3, 5, 100, 120, "compound");
+  const benchPress = new Exercise("Bench Press");
   const workoutComponent = new WorkoutComponent([benchPress]);
 
   it("should be able to create a workout", () => {
@@ -54,8 +54,8 @@ describe("Workout", () => {
     expect(workoutData.components[0].type).toBe("Single Set");
     expect(workoutData.components[0].exercises.length).toBe(1);
     expect(workoutData.components[0].exercises[0].name).toBe("Bench Press");
-    expect(workoutData.components[0].exercises[0].sets).toBe(3);
-    expect(workoutData.components[0].exercises[0].reps).toBe(5);
-    expect(workoutData.components[0].exercises[0].weight).toBe(100);
+    expect(workoutData.components[0].exercises[0].sets).toBe(0);
+    expect(workoutData.components[0].exercises[0].reps).toBe(0);
+    expect(workoutData.components[0].exercises[0].weight).toBe(0);
   });
 });

@@ -9,17 +9,10 @@ import {
 } from "../../models";
 
 describe("WorkoutProgram", () => {
-  const benchPress = new Exercise("Bench Press", 3, 5, 100, 120, "compound");
-  const pushUp = new Exercise("Push Up", 3, 5, 0, 0, "compound");
-  const chestFly = new Exercise("Chest Fly", 3, 5, 20, 20, "isolation");
-  const tricepExtension = new Exercise(
-    "Tricep Extension",
-    3,
-    5,
-    20,
-    20,
-    "isolation"
-  );
+  const benchPress = new Exercise("Bench Press");
+  const pushUp = new Exercise("Push Up");
+  const chestFly = new Exercise("Chest Fly");
+  const tricepExtension = new Exercise("Tricep Extension");
 
   const workoutComponentA = new WorkoutComponent([benchPress]);
   const workoutComponentB = new WorkoutComponent([chestFly]);
@@ -90,7 +83,7 @@ describe("WorkoutProgram", () => {
     ).toBe("Bench Press");
     expect(
       workoutProgramData[0].workouts[0].components[0].exercises[0].sets
-    ).toBe(3);
+    ).toBe(0);
   });
   test("should be able to generate a workout program for 8 weeks", () => {});
 });

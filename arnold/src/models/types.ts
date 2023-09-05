@@ -1,13 +1,9 @@
 import { Progression } from "./Progression";
 
-export interface RepsSetsWeight {
+export interface RepsSetsWeightMetadata {
   reps: number;
   sets: number;
   weight: number;
-}
-
-export interface RepsSetsWeightWithProgression {
-  calculateProgression(week: number, progression?: Progression): RepsSetsWeight;
 }
 
 interface WorkoutComponentData {

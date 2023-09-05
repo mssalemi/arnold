@@ -7,7 +7,7 @@ export class Workout {
 
   constructor(
     public name: string,
-    public progression: Progression = new Progression("linear", 2.5),
+    public progression: Progression = new Progression("linear"),
     public restBetweenSets: number = 60
   ) {}
 
@@ -36,9 +36,6 @@ export class Workout {
   }
 
   generateWorkout(week: number): WorkoutData {
-    console.log("Workout: ", this.name);
-    console.log("Week: ", week);
-
     const workout = this.workoutComponents.map((component) => {
       const type = component.exercises.length > 1 ? "Superset" : "Single Set";
 
@@ -49,7 +46,6 @@ export class Workout {
             week,
             this.progression
           );
-          console.log("week: ", week);
           return {
             name: excercise.name,
             sets: sets,

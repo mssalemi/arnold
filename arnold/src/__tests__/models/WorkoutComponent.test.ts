@@ -1,8 +1,8 @@
 import { WorkoutComponent, Exercise } from "../../models";
 
 describe("WorkoutComponent", () => {
-  const benchPress = new Exercise("Bench Press", 3, 5, 100, 120, "compound");
-  const pushUps = new Exercise("Push Ups", 3, 5, 0);
+  const benchPress = new Exercise("Bench Press");
+  const pushUps = new Exercise("Push Ups");
 
   it("should be able to create a workout component", () => {
     const workoutComponent = new WorkoutComponent();
@@ -18,7 +18,7 @@ describe("WorkoutComponent", () => {
 
   it("should be able to reorder an exercise", () => {
     const workoutComponent = new WorkoutComponent();
-    const pushUps = new Exercise("Push Ups", 3, 5, 0);
+    const pushUps = new Exercise("Push Ups");
     workoutComponent.addExercise(benchPress);
     workoutComponent.addExercise(pushUps);
     expect(workoutComponent.exercises).toEqual([benchPress, pushUps]);
