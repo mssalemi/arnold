@@ -54,8 +54,8 @@ describe("Workout", () => {
     expect(workoutData.components[0].type).toBe("Single Set");
     expect(workoutData.components[0].exercises.length).toBe(1);
     expect(workoutData.components[0].exercises[0].name).toBe("Bench Press");
-    expect(workoutData.components[0].exercises[0].sets).toBe(0);
-    expect(workoutData.components[0].exercises[0].reps).toBe(0);
-    expect(workoutData.components[0].exercises[0].weight).toBe(0);
+    expect(workoutData.components[0].exercises[0].sets).toBe(3);
+    expect(workoutData.components[0].exercises[0].reps).toBe(5);
+    expect(workoutData.components[0].exercises[0].weight).toBe(70);
   });
 });

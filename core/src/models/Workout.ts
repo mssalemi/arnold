@@ -42,10 +42,7 @@ export class Workout {
       return {
         type,
         exercises: component.exercises.map((excercise) => {
-          const { sets, reps, weight } = excercise.calculateProgression(
-            week,
-            this.progression
-          );
+          const { sets, reps, weight } = this.progression.metadata(week);
           return {
             name: excercise.name,
             sets: sets,
