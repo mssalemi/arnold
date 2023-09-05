@@ -10,7 +10,7 @@ export class Exercise {
     rest: number;
   };
 
-  constructor(name: string, rest?: number, type?: string) {
+  constructor(name: string, type?: string, rest?: number) {
     this.name = name;
     this.type = type || "accessory";
     this.config = {

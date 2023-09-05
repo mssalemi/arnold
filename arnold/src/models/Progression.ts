@@ -49,8 +49,8 @@ export class Progression {
         };
       default:
         return {
-          reps: 1,
-          sets: 100,
+          reps: 100,
+          sets: 1,
           weight: 0.8 * this.oneRepMax,
         };
     }

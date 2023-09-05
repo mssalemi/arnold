@@ -22,7 +22,7 @@ describe("Exercise", () => {
     expect(pushUps.type).toBe("accessory");
   });
   it("should calculate correct progression for different weeks", () => {
-    const linearProgression = new Progression("linear", 5);
+    const linearProgression = new Progression("linear");
 
     const benchPressProgressionWeek1 = benchPress.calculateProgression(
       1,

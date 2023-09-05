@@ -10,7 +10,7 @@ describe("Workout", () => {
     expect(workout.name).toBe("Workout A");
     expect(workout.progression).toBeDefined();
     expect(workout.progression.type).toBe("linear");
-    expect(workout.progression.increment).toBe(2.5);
+    expect(workout.progression.increment).toBe(5);
     expect(workout.restBetweenSets).toBe(60);
   });
 

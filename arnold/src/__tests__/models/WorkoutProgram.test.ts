@@ -9,7 +9,7 @@ import {
 } from "../../models";
 
 describe("WorkoutProgram", () => {
-  const benchPress = new Exercise("Bench Press");
+  const benchPress = new Exercise("Bench Press", "compound");
   const pushUp = new Exercise("Push Up");
   const chestFly = new Exercise("Chest Fly");
   const tricepExtension = new Exercise("Tricep Extension");
@@ -21,7 +21,6 @@ describe("WorkoutProgram", () => {
   const workoutComponentE = new WorkoutComponent([benchPress, pushUp]);
   const workoutComponentF = new WorkoutComponent([chestFly, tricepExtension]);
   const workoutComponentG = new WorkoutComponent([benchPress]);
-  const workoutComponentH = new WorkoutComponent([chestFly]);
 
   const workoutA = new Workout("Workout A");
   workoutA.addWorkoutComponent(workoutComponentA);
@@ -36,7 +35,7 @@ describe("WorkoutProgram", () => {
   const workoutC = new Workout("Workout C");
   workoutC.addWorkoutComponent(workoutComponentG);
 
-  const workoutProgram = new WorkoutProgram(new Progression("linear", 2.5));
+  const workoutProgram = new WorkoutProgram(new Progression("linear"));
   workoutProgram.addWorkout(workoutA);
   workoutProgram.addWorkout(workoutB);
   workoutProgram.addWorkout(workoutC);
@@ -45,7 +44,7 @@ describe("WorkoutProgram", () => {
     expect(workoutProgram).toBeDefined();
     expect(workoutProgram.progression).toBeDefined();
     expect(workoutProgram.progression.type).toBe("linear");
-    expect(workoutProgram.progression.increment).toBe(2.5);
+    expect(workoutProgram.progression.increment).toBe(5);
     expect(workoutProgram.workouts.length).toBe(3);
   });
   test("should be able to add a workout", () => {
@@ -83,7 +82,49 @@ describe("WorkoutProgram", () => {
     ).toBe("Bench Press");
     expect(
       workoutProgramData[0].workouts[0].components[0].exercises[0].sets
-    ).toBe(0);
+    ).toBe(3);
+    expect(
+      workoutProgramData[0].workouts[0].components[0].exercises[0].reps
+    ).toBe(5);
+    expect(
+      workoutProgramData[0].workouts[0].components[0].exercises[0].weight
+    ).toBe(70);
   });
-  test("should be able to generate a workout program for 8 weeks", () => {});
+  test("should be able to generate a workout program for 9 weeks", () => {
+    const workoutProgramData = workoutProgram.generateWorkoutProgram(9);
+    expect(workoutProgramData[0].workouts.length).toBe(3);
+    expect(workoutProgramData[0].workouts[0].components.length).toBe(3);
+    expect(workoutProgramData[0].workouts[0].components[0].type).toBe(
+      "Single Set"
+    );
+    expect(
+      workoutProgramData[0].workouts[0].components[0].exercises.length
+    ).toBe(1);
+    expect(
+      workoutProgramData[0].workouts[0].components[0].exercises[0].name
+    ).toBe("Bench Press");
+    expect(
+      workoutProgramData[0].workouts[0].components[0].exercises[0].sets
+    ).toBe(3);
+    expect(
+      workoutProgramData[0].workouts[0].components[0].exercises[0].reps
+    ).toBe(5);
+    expect(
+      workoutProgramData[0].workouts[0].components[0].exercises[0].weight
+    ).toBe(70);
+
+    console.log("Workout Program Data: ", workoutProgramData[8]);
+    expect(
+      workoutProgramData[8].workouts[0].components[0].exercises[0].name
+    ).toBe("Bench Press");
+    expect(
+      workoutProgramData[8].workouts[0].components[0].exercises[0].sets
+    ).toBe(1);
+    expect(
+      workoutProgramData[8].workouts[0].components[0].exercises[0].reps
+    ).toBe(100);
+    expect(
+      workoutProgramData[8].workouts[0].components[0].exercises[0].weight
+    ).toBe(80);
+  });
 });
