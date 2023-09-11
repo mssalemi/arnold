@@ -1,5 +1,3 @@
-import { Progression } from "./Progression";
-
 export interface RepsSetsWeightMetadata {
   reps: number;
   sets: number;

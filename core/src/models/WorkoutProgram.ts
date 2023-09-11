@@ -4,7 +4,6 @@ import { Progression, Workout, WeeklyWorkoutData } from ".";
 
 export class WorkoutProgram {
   constructor(
-    public progression: Progression,
     public name: string = "TEST PROGRAM",
     public workouts: Workout[] = []
   ) {}

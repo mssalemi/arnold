@@ -1,9 +1,16 @@
 import { RepsSetsWeightMetadata } from "./types";
 
+export interface ProgressionApi {
+  type: "linear" | "rep";
+  increment: number;
+  oneRepMax: number;
+  createMetadataForWeek: (week: number) => RepsSetsWeightMetadata;
+}
+
 export class Progression {
   // This needs updating
   type: "linear" | "rep";
-  increment: number = 5;
+  increment: number = 2.5;
   oneRepMax: number = 100;
 
   // Linear Model
@@ -13,11 +20,13 @@ export class Progression {
   // Week 9: 1xAMRAP @80% 1xAMRAP @ 70% 1xAMRAP @ 60%
   // Repeat
 
-  constructor(type: "linear" | "rep") {
+  constructor(type: "linear" | "rep", oneRepMax: number, increment?: number) {
     this.type = type;
+    this.oneRepMax;
+    if (oneRepMax) this.oneRepMax = oneRepMax;
   }
 
-  metadata(week: number): RepsSetsWeightMetadata {
+  createMetadataForWeek(week: number): RepsSetsWeightMetadata {
     return this.calculateWorkoutMetadata(week);
   }
 

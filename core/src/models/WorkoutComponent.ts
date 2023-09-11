@@ -1,10 +1,20 @@
 import { Exercise } from "./Exercise";
 
+export interface WorkoutComponentApi {
+  exercises: Exercise[];
+  name?: string;
+  addExercise: (exercise: Exercise) => void;
+  removeExercise: (exercise: Exercise) => void;
+  reorderExercise: (exercise: Exercise, newIndex: number) => void;
+}
+
 export class WorkoutComponent {
   exercises: Exercise[];
+  name?: string;
 
-  constructor(exercises: Exercise[] = []) {
+  constructor(exercises: Exercise[] = [], name?: string) {
     this.exercises = exercises;
+    if (name) this.name = name;
   }
 
   addExercise(exercise: Exercise): void {

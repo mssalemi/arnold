@@ -1,15 +1,24 @@
-import { Progression, WorkoutComponent } from ".";
+import { Exercise, Progression, WorkoutComponent } from ".";
+import { RepsSetsWeightMetadata } from "./types";
 
 import { WorkoutData } from "./types";
+
+export interface WorkoutApi {
+  name: string;
+  workoutComponents: WorkoutComponent[];
+  addWorkoutComponent: (workoutComponent: WorkoutComponent) => void;
+  removeWorkoutComponent: (workoutComponent: WorkoutComponent) => void;
+  reorderWorkoutComponent: (
+    workoutComponent: WorkoutComponent,
+    newIndex: number
+  ) => void;
+  generateWorkout: (week: number) => WorkoutData;
+}
 
 export class Workout {
   workoutComponents: WorkoutComponent[] = [];
 
-  constructor(
-    public name: string,
-    public progression: Progression = new Progression("linear"),
-    public restBetweenSets: number = 60
-  ) {}
+  constructor(public name: string, public restBetweenSets: number = 60) {}
 
   addWorkoutComponent(workoutComponent: WorkoutComponent): void {
     this.workoutComponents.push(workoutComponent);
@@ -42,7 +51,8 @@ export class Workout {
       return {
         type,
         exercises: component.exercises.map((excercise) => {
-          const { sets, reps, weight } = this.progression.metadata(week);
+          const { sets, reps, weight } =
+            excercise.progression!.createMetadataForWeek(week);
           return {
             name: excercise.name,
             sets: sets,

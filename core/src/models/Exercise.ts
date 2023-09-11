@@ -1,12 +1,24 @@
-import { RepsSetsWeightMetadata, Progression } from ".";
+import { Progression } from "./Progression";
+
+export interface ExerciseApi {
+  name: string;
+  type: string;
+  progression: Progression;
+  restBetweenSets: number;
+  editExercise: (opts: Partial<ExerciseApi>) => void;
+}
+
+type ExerciseType = "compound" | "accessory";
 
 export class Exercise {
   name: string;
-  type?: string;
+  type: string;
+  progression: Progression;
 
-  constructor(name: string, type?: string) {
+  constructor(name: string, type: ExerciseType, progression: Progression) {
     this.name = name;
-    this.type = type || "accessory";
+    this.type = type;
+    this.progression = progression;
   }
 
   editExercise(opts: Partial<Exercise>): void {

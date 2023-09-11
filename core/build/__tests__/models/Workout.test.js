@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../../models");
 describe("Workout", () => {
-    const benchPress = new models_1.Exercise("Bench Press", 3, 5, 100, 120, "compound");
+    const benchPress = new models_1.Exercise("Bench Press");
     const workoutComponent = new models_1.WorkoutComponent([benchPress]);
     it("should be able to create a workout", () => {
         const workout = new models_1.Workout("Workout A");
@@ -10,7 +10,7 @@ describe("Workout", () => {
         expect(workout.name).toBe("Workout A");
         expect(workout.progression).toBeDefined();
         expect(workout.progression.type).toBe("linear");
-        expect(workout.progression.increment).toBe(2.5);
+        expect(workout.progression.increment).toBe(5);
         expect(workout.restBetweenSets).toBe(60);
     });
     it("should be able to add a workout component", () => {
@@ -51,6 +51,6 @@ describe("Workout", () => {
         expect(workoutData.components[0].exercises[0].name).toBe("Bench Press");
         expect(workoutData.components[0].exercises[0].sets).toBe(3);
         expect(workoutData.components[0].exercises[0].reps).toBe(5);
-        expect(workoutData.components[0].exercises[0].weight).toBe(100);
+        expect(workoutData.components[0].exercises[0].weight).toBe(70);
     });
 });

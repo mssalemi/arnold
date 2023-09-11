@@ -2,8 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkoutComponent = void 0;
 class WorkoutComponent {
-    constructor(exercises = []) {
+    constructor(exercises = [], name) {
         this.exercises = exercises;
+        if (name)
+            this.name = name;
     }
     addExercise(exercise) {
         this.exercises.push(exercise);

@@ -1,11 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Workout = void 0;
-const _1 = require(".");
 class Workout {
-    constructor(name, progression = new _1.Progression("linear", 2.5), restBetweenSets = 60) {
+    constructor(name, restBetweenSets = 60) {
         this.name = name;
-        this.progression = progression;
         this.restBetweenSets = restBetweenSets;
         this.workoutComponents = [];
     }
@@ -20,15 +18,12 @@ class Workout {
         this.workoutComponents.splice(newIndex, 0, this.workoutComponents.splice(oldIndex, 1)[0]);
     }
     generateWorkout(week) {
-        console.log("Workout: ", this.name);
-        console.log("Week: ", week);
         const workout = this.workoutComponents.map((component) => {
             const type = component.exercises.length > 1 ? "Superset" : "Single Set";
             return {
                 type,
                 exercises: component.exercises.map((excercise) => {
-                    const { sets, reps, weight } = excercise.calculateProgression(week, this.progression);
-                    console.log("week: ", week);
+                    const { sets, reps, weight } = excercise.progression.createMetadataForWeek(week);
                     return {
                         name: excercise.name,
                         sets: sets,
