@@ -1,6 +1,16 @@
 import chalk from "chalk";
 
-import { Progression, Workout, WeeklyWorkoutData } from ".";
+import { Workout, WeeklyWorkoutData } from ".";
+
+export interface WorkoutProgramApi {
+  name: string;
+  workouts: Workout[];
+  addWorkout?: (workout: Workout) => void;
+  removeWorkout?: (workout: Workout) => void;
+  reorderWorkout?: (workout: Workout, newIndex: number) => void;
+  // This method is used to return data for the front end client to use
+  generateWorkoutProgram?: (weeks: number) => WeeklyWorkoutData[];
+}
 
 export class WorkoutProgram {
   constructor(

@@ -1,11 +1,17 @@
 import { Progression } from "./Progression";
 
+// This represents an excercise
 export interface ExerciseApi {
+  id: number;
   name: string;
   type: string;
-  progression: Progression;
+  progression: {
+    type: "linear" | "rep";
+    increment: number;
+    oneRepMax: number;
+  };
   restBetweenSets: number;
-  editExercise: (opts: Partial<ExerciseApi>) => void;
+  editExercise?: (opts: Partial<ExerciseApi>) => void;
 }
 
 type ExerciseType = "compound" | "accessory";

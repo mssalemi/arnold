@@ -1,10 +1,12 @@
 import { RepsSetsWeightMetadata } from "./types";
 
+// This is an important concept in WorkoutProgram
+// This is the 'engine' that will determine the progression of the workout, aka the rest, sets, reps, and weight
 export interface ProgressionApi {
   type: "linear" | "rep";
   increment: number;
   oneRepMax: number;
-  createMetadataForWeek: (week: number) => RepsSetsWeightMetadata;
+  createMetadataForWeek?: (week: number) => RepsSetsWeightMetadata;
 }
 
 export class Progression {

@@ -3,16 +3,20 @@ import { RepsSetsWeightMetadata } from "./types";
 
 import { WorkoutData } from "./types";
 
+// This represents a workout
+// A workout can be either 1 or more workout components
+// Workouts have a name the user can set, the user can also
 export interface WorkoutApi {
   name: string;
   workoutComponents: WorkoutComponent[];
-  addWorkoutComponent: (workoutComponent: WorkoutComponent) => void;
-  removeWorkoutComponent: (workoutComponent: WorkoutComponent) => void;
-  reorderWorkoutComponent: (
+  addWorkoutComponent?: (workoutComponent: WorkoutComponent) => void;
+  removeWorkoutComponen?: (workoutComponent: WorkoutComponent) => void;
+  reorderWorkoutComponent?: (
     workoutComponent: WorkoutComponent,
     newIndex: number
   ) => void;
-  generateWorkout: (week: number) => WorkoutData;
+  // This method is used to return data for the front end client to use
+  generateWorkout?: (week: number) => WorkoutData;
 }
 
 export class Workout {

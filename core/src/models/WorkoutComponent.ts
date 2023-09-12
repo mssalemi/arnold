@@ -1,11 +1,15 @@
 import { Exercise } from "./Exercise";
 
+// This represents a workout component
+// A workout component can be either 1 or more exercises
+// For example, a workout component can be a superset, a triset, or a giant set
+// This is one portion of the workout. Workouts can have multiple workout components
 export interface WorkoutComponentApi {
   exercises: Exercise[];
   name?: string;
-  addExercise: (exercise: Exercise) => void;
-  removeExercise: (exercise: Exercise) => void;
-  reorderExercise: (exercise: Exercise, newIndex: number) => void;
+  addExercise?: (exercise: Exercise) => void;
+  removeExercise?: (exercise: Exercise) => void;
+  reorderExercise?: (exercise: Exercise, newIndex: number) => void;
 }
 
 export class WorkoutComponent {

@@ -1,16 +1,16 @@
-import exercise from "./dataset";
+import { exercises } from "./dataset";
 
 const Resolvers = {
   Query: {
-    getAllExercise: () => exercise,
+    getAllExercise: () => exercises,
     getExercise: (parent: any, args: any) => {
-      return exercise.find((exercise) => exercise.id === args.id);
+      return exercises.find((exercise) => exercise.id === args.id);
     },
     getExerciseByName: (parent: any, args: any) => {
-      return exercise.find((exercise) => exercise.name === args.name);
+      return exercises.find((exercise) => exercise.name === args.name);
     },
     getAllExerciseByType: (parent: any, args: any) => {
-      return exercise.filter((exercise) => exercise.type === args.type);
+      return exercises.filter((exercise) => exercise.type === args.type);
     },
   },
 };
