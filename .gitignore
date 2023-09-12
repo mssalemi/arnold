@@ -41,3 +41,7 @@ dist/**/*
 yarn.lock
 
 build/**
+dist/**
+
+graphql/dist/**
+core/build/**

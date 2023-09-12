@@ -1,8 +1,12 @@
 import { exercises } from "./dataset";
 
 const Resolvers = {
-  Query: {
-    getAllExercise: () => exercises,
+  Query: {},
+  ExerciseQuery: {
+    getAllExercise: () => {
+      console.log(exercises);
+      return exercises;
+    },
     getExercise: (parent: any, args: any) => {
       return exercises.find((exercise) => exercise.id === args.id);
     },

@@ -43,6 +43,12 @@ const Schema = gql`
     getWorkoutsByProgram(id: Int!): WorkoutProgramType
     getWorkoutPrograms: [WorkoutProgramType!]!
   }
+  type ExerciseQuery {
+    getAllExercise: [ExerciseType]
+    getExercise(id: Int): ExerciseType
+    getExerciseByName(name: String): ExerciseType
+    getAllExerciseByType(type: String): [ExerciseType]
+  }
   type Mutation {
     #############################
     # Workout Program Managment #
